@@ -35,3 +35,25 @@
   <li> sigcheck64.exe from <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite"> Sysinternals Suite </li>
 </ol>
 <p align="right">(<a href="#top">Back to Top</a>)</p>
+
+
+<h2 id="questions"> Questions </h2>
+<p> <strong> 1. Understanding the scope of the attack and identifying which versions exhibit malicious behavior is crucial for making informed decisions if these compromised versions are present in the organization. How many versions of 3CX running on Windows have been flagged as malware? </strong> </p>
+<p> I googled the related websites using the keywords "3CX windows malware" and found an article <a href="https://blogs.vmware.com/security/2023/03/investigating-3cx-desktop-application-attacks-what-you-need-to-know.html"> Investigating 3CX Desktop Application Attacks: What You Need to Know </a>from VMWare. </p>
+<img width="1058" height="180" alt="Screenshot 2026-07-03 184348" src="https://github.com/user-attachments/assets/6f9e8c27-02dc-44f1-b387-7da92aa8a5f9" />
+<p> According to the article we knew that the affected 3CX desktop app versions were 18.12.407 and 18.12.416 for Windows, confirmed by 3CX. Therefore, the answer was <strong>2</strong>.</p>
+<br>
+<p> <strong> 2. Determining the age of the malware can help assess the extent of the compromise and track the evolution of malware families and variants. What's the UTC creation time of the .msi malware? </strong> </p>
+<p> I uploaded 3CXDesktopApp-18.12.416.msi to VirusTotal and navigated to Details section and looked at the History. </p>
+<img width="507" height="187" alt="Screenshot 2026-07-03 184916" src="https://github.com/user-attachments/assets/e017b341-8510-4eb7-8ddd-e6ae994d6550" />
+<p> The creation Time of the malware was <strong>2023-03-13 06:33</strong>. </p>
+<br>
+<p> <strong> 3. Executable files (.exe) are frequently used as primary or secondary malware payloads, while dynamic link libraries (.dll) often load malicious code or enhance malware functionality. Analyzing files deposited by the Microsoft Software Installer (.msi) is crucial for identifying malicious files and investigating their full potential. Which malicious DLLs were dropped by the .msi file? </strong></p>
+<p align="right">(<a href="#top">Back to Top</a>)</p>
+
+
+<h2 id="reference"> Reference </h2>
+<p> <a href="https://cyberdefenders.org/blueteam-ctf-challenges/achievements/abc1230940/3cx-supply-chain/"> CyberDefenders - 3CX Supply Chain Lab </a> </p>
+<p> <a href="https://blogs.vmware.com/security/2023/03/investigating-3cx-desktop-application-attacks-what-you-need-to-know.html"> VMWare - Investigating 3CX Desktop Application Attacks: What You Need to Know </a> </p>
+<p> <a href="https://www.virustotal.com/gui/file/59e1edf4d82fae4978e97512b0331b7eb21dd4b838b850ba46794d9c7a2c0983/detection"> Static Analysis report of 3CXDesktopApp-18.12.416.msi from VirusTotal </p>
+<p align="right">(<a href="#top">Back to Top</a>)</p>
