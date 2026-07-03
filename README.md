@@ -24,3 +24,14 @@
 <p> A large multinational corporation heavily relies on the 3CX software for phone communication, making it a critical component of their business operations. After a recent update to the 3CX Desktop App, antivirus alerts flag sporadic instances of the software being wiped from some workstations while others remain unaffected. Dismissing this as a false positive, the IT team overlooks the alerts, only to notice degraded performance and strange network traffic to unknown servers. Employees report issues with the 3CX app, and the IT security team identifies unusual communication patterns linked to recent software updates. </p>
 <p> As the threat intelligence analyst, it's your responsibility to examine this possible supply chain attack. Your objectives are to uncover how the attackers compromised the 3CX app, identify the potential threat actor involved, and assess the overall extent of the incident. </p>
 <p align="right">(<a href="#top">Back to Top</a>)</p>
+
+
+<h2 id="tools-used"> Tools Used </h2>
+<ol>
+  <li> <a href="https://www.virustotal.com/"> VirusTotal </a> </li>
+  <li> <a href="https://attack.mitre.org/"> MITRE ATT&CK </a> </li>
+  <li> msiinfo.exe from <a href="https://learn.microsoft.com/en-us/windows/apps/windows-sdk/downloads"> Windows SDK </a> </li>
+  <li> msiexec </li>
+  <li> sigcheck64.exe from <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite"> Sysinternals Suite </li>
+</ol>
+<p align="right">(<a href="#top">Back to Top</a>)</p>
