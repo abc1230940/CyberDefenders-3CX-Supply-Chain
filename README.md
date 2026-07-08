@@ -44,7 +44,7 @@
 <p> According to the article, the affected versions were 18.12.407 and 18.12.416 for Windows, confirmed by 3CX. Therefore, the answer was <strong>2</strong>.</p>
 <br>
 <p> <strong> 2. Determining the age of the malware can help assess the extent of the compromise and track the evolution of malware families and variants. What's the UTC creation time of the .msi malware? </strong> </p>
-<p> I uploaded 3CXDesktopApp-18.12.416.msi to VirusTotal nd navigating to the Details section to review the History. </p>
+<p> I uploaded 3CXDesktopApp-18.12.416.msi to VirusTotal and was navigating to the Details section to review the History. </p>
 <img width="507" height="187" alt="Screenshot 2026-07-03 184916" src="https://github.com/user-attachments/assets/e017b341-8510-4eb7-8ddd-e6ae994d6550" />
 <p> The creation Time of the malware was <strong>2023-03-13 06:33</strong>. </p>
 <br>
