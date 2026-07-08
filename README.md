@@ -41,10 +41,10 @@
 <p> <strong> 1. Understanding the scope of the attack and identifying which versions exhibit malicious behavior is crucial for making informed decisions if these compromised versions are present in the organization. How many versions of 3CX running on Windows have been flagged as malware? </strong> </p>
 <p> I googled the related websites using the keywords "3CX windows malware" and found an article <a href="https://blogs.vmware.com/security/2023/03/investigating-3cx-desktop-application-attacks-what-you-need-to-know.html"> Investigating 3CX Desktop Application Attacks: What You Need to Know </a>from VMWare. </p>
 <img width="1058" height="180" alt="Screenshot 2026-07-03 184348" src="https://github.com/user-attachments/assets/6f9e8c27-02dc-44f1-b387-7da92aa8a5f9" />
-<p> According to the article we knew that the affected 3CX desktop app versions were 18.12.407 and 18.12.416 for Windows, confirmed by 3CX. Therefore, the answer was <strong>2</strong>.</p>
+<p> According to the article, the affected versions were 18.12.407 and 18.12.416 for Windows, confirmed by 3CX. Therefore, the answer was <strong>2</strong>.</p>
 <br>
 <p> <strong> 2. Determining the age of the malware can help assess the extent of the compromise and track the evolution of malware families and variants. What's the UTC creation time of the .msi malware? </strong> </p>
-<p> I uploaded 3CXDesktopApp-18.12.416.msi to VirusTotal and navigated to Details section and looked at the History. </p>
+<p> I uploaded 3CXDesktopApp-18.12.416.msi to VirusTotal nd navigating to the Details section to review the History. </p>
 <img width="507" height="187" alt="Screenshot 2026-07-03 184916" src="https://github.com/user-attachments/assets/e017b341-8510-4eb7-8ddd-e6ae994d6550" />
 <p> The creation Time of the malware was <strong>2023-03-13 06:33</strong>. </p>
 <br>
@@ -58,7 +58,7 @@
 <p> /qb: Runs the extraction with a basic, non-interactive user interface </p>
 <p> TARGETDIR: the output path of the extracted files </p>
 <img width="388" height="145" alt="Screenshot 2026-07-08 131610" src="https://github.com/user-attachments/assets/7474e993-2595-45f6-98c5-b2aa87964fc7" />
-<p> After extraction, we can navigate to <strong>"C:\ExtractedMSI\3CXDesktopApp\app-18.12.416"</strong> that contained the libraries. </p>
+<p> After extraction, we can navigate to <strong>"C:\ExtractedMSI\3CXDesktopApp\app-18.12.416"</strong> which contains the libraries. </p>
 <img width="657" height="501" alt="Screenshot 2026-07-08 132105" src="https://github.com/user-attachments/assets/dd95dd08-3816-4531-835f-4b6157783687" />
 <p> In order to check the reputation of the extracted folder, we can use sigcheck64.exe from Sysinternals. </p>
 <pre> <code lang="cmd"> sigcheck64.exe -v -e -s "C:\ExtractedMSI" </code> </pre>
@@ -69,12 +69,12 @@
 <p> Based on the result, there were 2 libraries flagged as malicious by VirusTotal: <strong>ffmpeg.dll</strong> and <strong>d3dcompiler_47.dll</strong>. </p>
 <br>
 <p> <strong> 4. Recognizing the persistence techniques used in this incident is essential for current mitigation strategies and future defense improvements. What is the MITRE Technique ID employed by the .msi files to load the malicious DLL? </strong></p>
-<p> Execution of a Windows executable using the functions from malicious dll library will attempt to bypass the detection from EDR or AV of the system, which is called DLL Side-loading. </p>
+<p> Execution of a Windows executable using the functions from a malicious DLL library will attempt to bypass detection by the system's EDR or AV, which is called DLL Side-loading. </p>
 <img width="1422" height="832" alt="Screenshot 2026-07-08 135036" src="https://github.com/user-attachments/assets/0b9faa0d-c38b-48be-8ec2-ef5f81d75d1a" />
 <p> The MITRE ATT&CK Technique ID is <strong>T1574</strong>. </p>
 <br>
 <p> <strong> 5. Recognizing the malware type (threat category) is essential to your investigation, as it can offer valuable insight into the possible malicious actions you'll be examining. What is the threat category of the two malicious DLLs? </strong> </p>
-<p> We can check the static analysis reports of the malicious dll libraries on VirusTotal from the Question 3. </p>
+<p> We can check the static analysis reports of the malicious dll libraries on VirusTotal from Question 3. </p>
 <img width="1821" height="505" alt="Screenshot 2026-07-08 135616" src="https://github.com/user-attachments/assets/2b425949-5296-4e40-8001-b959091485b6" />
 <p> ffmpeg.dll </p>
 <img width="1797" height="488" alt="Screenshot 2026-07-08 135635" src="https://github.com/user-attachments/assets/b6d46de8-6f14-4017-b094-1ce019acf69d" />
@@ -90,7 +90,7 @@
 <p> We can check the static analysis report of ffmpeg.dll on VirusTotal again and navigated to Behaviors section and looked at MITRE ATT&CK Tactics and Techniques about Virtualization/Sandbox Evasion (T1497). </p> 
 <img width="392" height="203" alt="Screenshot 2026-07-08 140635" src="https://github.com/user-attachments/assets/4192c104-a48f-49a8-8e15-50d7444f4db1" />
 <img width="1422" height="270" alt="Screenshot 2026-07-08 140650" src="https://github.com/user-attachments/assets/87458556-e5bf-41c2-b159-38e921841db0" />
-<p> Based on the description, we can realize that the malicious dll library will first check if it was in the <strong>VMWare</strong> before the execution. </p>
+<p> Based on the description, we can realize that the malicious dll library will first check if it was in the <strong>VMWare</strong> hypervisor before the execution. </p>
 <br>
 <p> <strong> 8. Identifying the cryptographic method used in malware is crucial for understanding the techniques employed to bypass defense mechanisms and execute its functions fully. What encryption algorithm is used by the ffmpeg.dll file? </strong></p>
 <p> As we looked at other techniques, we can also learn that the malicious library "Obfuscated Files or Information" to evade detection. </p>
@@ -108,7 +108,7 @@
 <a href="https://www.youtube.com/watch?v=VLHkxmlj_QU" target="_blank">
    <img src="https://img.youtube.com/vi/VLHkxmlj_QU/hqdefault.jpg" alt="The Most Feared Hacker Group EVER" width="560" />
 </a>
-<p> Please check the video "The Most Feared Hacker Group EVER" from Blackfiles on Youtube about the introduction of the North Korean stated hacker group. </p>
+<p> Please check the video "The Most Feared Hacker Group EVER" from Blackfiles on YouTube providing a profile of the North Korean state-sponsored threat group. </p>
 <p align="right">(<a href="#top">Back to Top</a>)</p>
 
 
